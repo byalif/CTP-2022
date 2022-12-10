@@ -27,7 +27,7 @@ export default function Footer() {
             <li><a href="">Help</a></li>
           </ul>
         </div>
-        <div className="col">
+        <div className="col-2">
           <h3>Contact</h3>
           <p>P: 1234 213 301</p>
           <p>E: contact@iwardrobe.com</p>

@@ -10,7 +10,7 @@ export default function Layout({ children }) {
             <BackgroundGradient className="absolute top-0 bottom-0 left-1/2 hidden w-1/2 lg:block" />
     
             <Header />
-            <main className="flex-shrink-0 flex-grow items-center lg:flex">
+            <main className="">
             {children}
             </main>
             <Footer />

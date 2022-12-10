@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
 import {
   MDBContainer,
   MDBCol,
@@ -18,25 +17,13 @@ function Login() {
     password: "",
   });
 
-  const logInUser = async () => {
+  const logInUser = () => {
     if (input.email.trim() === "" || input.password.trim() === "") {
       alert("No blank fields allowed!");
       return;
     }
 
-    try {
-      const loggedIn = await axios.post(
-        "https://ctp-project.herokuapp.com/api/login",
-        {
-          email,
-          password,
-        }
-      );
-
-      alert("Succesfully logged in");
-    } catch (error) {
-      alert("error loggin in");
-    }
+    // axios.post()
   };
 
   const changeTXT = (e) => {

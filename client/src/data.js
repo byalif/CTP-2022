@@ -6,6 +6,7 @@ export default [
         date:"9 Dec 2022",
         location:"Brooklyn, NY",
         description: "Hi all, I hope you'll enjoy my outfit <3",
+        hashtags: "#sell #giveaway",
         postImage:"https://images.unsplash.com/photo-1541099649105-f69ad21f3246?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2787&q=80",
         avatar: "./Kristina.png"
     },

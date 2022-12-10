@@ -8,7 +8,7 @@ import {
   MDBInput,
   MDBCheckbox,
 } from "mdb-react-ui-kit";
-
+import axios from "axios";
 import Layout from "../components/layout";
 
 function Login() {
@@ -17,13 +17,22 @@ function Login() {
     password: "",
   });
 
-  const logInUser = () => {
+  const logInUser = async () => {
     if (input.email.trim() === "" || input.password.trim() === "") {
       alert("No blank fields allowed!");
       return;
     }
 
-    // axios.post()
+    try {
+      const login = await axios.post(
+        "https://ctp-project.herokuapp.com/api/login",
+        {
+          email: input.email,
+          password: input.password,
+        }
+      );
+      alert("user logged in");
+    } catch (error) {}
   };
 
   const changeTXT = (e) => {

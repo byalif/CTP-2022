@@ -13,7 +13,8 @@ const CreateAccount = () => {
     password: "",
   });
 
-  const createAcc = async () => {
+  const createAcc = async (e) => {
+    e.preventDefault();
     if (
       input.email.trim() === "" ||
       input.password.trim() === "" ||
@@ -26,22 +27,22 @@ const CreateAccount = () => {
       return;
     }
 
-    try {
-      const login = await axios.post(
-        "https://ctp-project.herokuapp.com/api/create",
-        {
-          email: input.email,
-          password: input.password,
-          firstName: input.firstName,
-          lastName: input.lastName,
-          phone: input.phone,
-          nickName: input.nickName,
-        }
-      );
-      alert("user created!");
-    } catch (error) {
-      alert("oops");
-    }
+    axios
+      .post("https://ctp-project.herokuapp.com/api/users/create", {
+        email: input.email,
+        password: input.password,
+        firstName: input.firstName,
+        lastName: input.lastName,
+        phone: input.phone,
+        nickName: input.nickName,
+      })
+      .then((x) => {
+        console.log("user created");
+        alert("user created");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
   const onChangeHandler = (e) => {
     setInput({
@@ -52,6 +53,7 @@ const CreateAccount = () => {
   return (
     <Layout>
       <div id="main-registration-container">
+<<<<<<< HEAD
         <div id="register" className="d-flex justify-center">
           <form method="post" name="userRegistrationForm" > 
           <div className="d-flex flex-wrap">
@@ -118,6 +120,61 @@ const CreateAccount = () => {
                 value="Register"
                 />
 
+=======
+        <div id="register">
+          <h3>Create Account</h3>
+          <form method="post" name="userRegistrationForm">
+            <label>First Name</label>
+            <input
+              type="text"
+              onChange={onChangeHandler}
+              value={input.firstName}
+              name="firstName"
+            />
+            <label>Last name</label>
+            <input
+              type="text"
+              onChange={onChangeHandler}
+              value={input.lastName}
+              name="lastName"
+            />
+            <label>Email:</label>
+            <input
+              type="text"
+              onChange={onChangeHandler}
+              value={input.email}
+              name="email"
+            />
+            <div className="errorMsg"></div>
+            <label>Nickname:</label>
+            <input
+              type="text"
+              onChange={onChangeHandler}
+              value={input.nickName}
+              name="nickName"
+            />
+            <label>Mobile No:</label>
+            <input
+              type="text"
+              onChange={onChangeHandler}
+              value={input.phone}
+              name="phone"
+            />
+            <label>Password</label>
+            <input
+              type="password"
+              onChange={onChangeHandler}
+              value={input.password}
+              name="password"
+            />
+            <div className="errorMsg"></div>
+            <input
+              onClick={createAcc}
+              type="submit"
+              className="button"
+              value="Register"
+            />
+>>>>>>> cee539b15ce7b1bf2cf78ccd77be27c0939d7ace
           </form>
         </div>
       </div>

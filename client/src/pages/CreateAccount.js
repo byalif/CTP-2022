@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Img from "../Img";
 import Layout from "../components/layout";
+import axios from "axios";
 
 const CreateAccount = () => {
   const [input, setInput] = useState({
@@ -55,16 +56,41 @@ const CreateAccount = () => {
           <h3>Create Account</h3>
           <form method="post" name="userRegistrationForm">
             <label>First Name</label>
-            <input type="text" value={input.firstName} name="firstName" />
+            <input
+              type="text"
+              onChange={onChangeHandler}
+              value={input.firstName}
+              name="firstName"
+            />
             <label>Last name</label>
-            <input type="text" value={input.lastName} name="lastname" />
+            <input
+              type="text"
+              onChange={onChangeHandler}
+              value={input.lastName}
+              name="lastName"
+            />
             <label>Email:</label>
-            <input type="text" value={input.email} name="email" />
+            <input
+              type="text"
+              onChange={onChangeHandler}
+              value={input.email}
+              name="email"
+            />
             <div className="errorMsg"></div>
             <label>Nickname:</label>
-            <input type="text" value={input.nickName} name="nickName" />
+            <input
+              type="text"
+              onChange={onChangeHandler}
+              value={input.nickName}
+              name="nickName"
+            />
             <label>Mobile No:</label>
-            <input type="text" value={input.phone} name="phone" />
+            <input
+              type="text"
+              onChange={onChangeHandler}
+              value={input.phone}
+              name="phone"
+            />
             <label>Password</label>
             <input type="password" value={input.password} name="password" />
             <div className="errorMsg"></div>

@@ -13,7 +13,8 @@ const CreateAccount = () => {
     password: "",
   });
 
-  const createAcc = async () => {
+  const createAcc = async (e) => {
+    e.preventDefault();
     if (
       input.email.trim() === "" ||
       input.password.trim() === "" ||
@@ -26,22 +27,22 @@ const CreateAccount = () => {
       return;
     }
 
-    try {
-      const login = await axios.post(
-        "https://ctp-project.herokuapp.com/api/create",
-        {
-          email: input.email,
-          password: input.password,
-          firstName: input.firstName,
-          lastName: input.lastName,
-          phone: input.phone,
-          nickName: input.nickName,
-        }
-      );
-      alert("user created!");
-    } catch (error) {
-      alert("oops");
-    }
+    axios
+      .post("https://ctp-project.herokuapp.com/api/users/create", {
+        email: input.email,
+        password: input.password,
+        firstName: input.firstName,
+        lastName: input.lastName,
+        phone: input.phone,
+        nickName: input.nickName,
+      })
+      .then((x) => {
+        console.log("user created");
+        alert("user created");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
   const onChangeHandler = (e) => {
     setInput({
@@ -92,7 +93,12 @@ const CreateAccount = () => {
               name="phone"
             />
             <label>Password</label>
-            <input type="password" value={input.password} name="password" />
+            <input
+              type="password"
+              onChange={onChangeHandler}
+              value={input.password}
+              name="password"
+            />
             <div className="errorMsg"></div>
             <input
               onClick={createAcc}

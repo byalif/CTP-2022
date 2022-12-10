@@ -23,16 +23,17 @@ function Login() {
       return;
     }
 
-    try {
-      const login = await axios.post(
-        "https://ctp-project.herokuapp.com/api/login",
-        {
-          email: input.email,
-          password: input.password,
-        }
-      );
-      alert("user logged in");
-    } catch (error) {}
+    axios
+      .post("https://ctp-project.herokuapp.com/api/users/login", {
+        email: input.email,
+        password: input.password,
+      })
+      .then((x) => {
+        localStorage.setItem("email", x.email);
+      })
+      .catch((err) => {
+        alert("wrong password");
+      });
   };
 
   const changeTXT = (e) => {

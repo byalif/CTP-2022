@@ -4,7 +4,7 @@ import LoadingSpinner from "../components/LoadingSpinner";
 import ErrorAlert from "../components/ErrorAlert";
 import Layout from "../components/layout";
 import MicroPost from "../components/MicroPost";
-
+import { Link} from "react-router-dom";
 import data from "../data"
 
 function PostsListPage() {
@@ -29,7 +29,7 @@ function PostsListPage() {
           <div className="landing-main-text">
             <p>DON'T HIDE YOURSELF</p>
             <h1>SHARE YOUR <br></br>LOOK</h1>
-            <button>Start now!</button>
+            <Link to="/create"><button>Start now!</button></Link>
           </div>
         </div>
         <div>

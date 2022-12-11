@@ -16,29 +16,31 @@ const CreatePost = () => {
   };
   return (
     <Layout>
-      <div style={{ display: "Flex", padding: "25px" }}>
-        <div style={{ width: "50%" }}>
-          <input type="file" name="filename" />
+      <div className="create-post-block d-flex">
+        <div style={{ width: "50%" }} >
+        <label htmlFor="file-upload"  className="upload-photo-block">Drop your image here or <span className="blue-link">&nbsp; browse</span></label>
+          <input  id="file-upload" type="file" name="filename"/>
         </div>
-        <div style={{ width: "35%" }}>
-          <div style={{ display: "Flex", flexDirection: "column" }}>
+        <div style={{ width: "50%" }} className="form-post-info ">
+          <div style={{ display: "Flex", flexDirection: "column" }} className="mb-4">
             {" "}
-            <label htmlFor="">Title</label>
-            <input type="text" />
+            <label htmlFor="" className="mb-1">Title</label>
+            <input type="text"  placeholder="Once upon a time..." />
           </div>
-          <div style={{ display: "Flex", flexDirection: "column" }}>
+          <div style={{ display: "Flex", flexDirection: "column" }} className="mb-4">
             {" "}
-            <label htmlFor="">Description</label>
-            <textArea type="text" />
+            <label htmlFor="" className="mb-1">Description</label>
+            <textArea type="text"  placeholder="Once upon a time..." rows="4" cols="50"/>
           </div>
-          <div style={{ display: "Flex", flexDirection: "column" }}>
-            <label htmlFor="">Location</label>
-            <input type="text" />
+          <div style={{ display: "Flex", flexDirection: "column" }} className="mb-4">
+            <label htmlFor="" className="mb-1">Location</label>
+            <input type="text" placeholder="Once upon a time..."/>
           </div>
-          <div style={{ display: "Flex", flexDirection: "column" }}>
-            <label htmlFor="">HashTags</label>
-            <input type="text" />
+          <div style={{ display: "Flex", flexDirection: "column" }} className="mb-4">
+            <label htmlFor="" className="mb-1">HashTags</label>
+            <input type="text"  placeholder="Once upon a time..."/>
           </div>
+          <input type="submit"/>
         </div>
       </div>
     </Layout>

@@ -6,6 +6,7 @@ import Layout from "../components/layout";
 import MicroPost from "../components/MicroPost";
 import { Link} from "react-router-dom";
 import data from "../data"
+//import {DemoCarousel} from "../components/DemoCarousel";
 
 function PostsListPage() {
   const cards = data.slice(0, 4).map(item =>{
@@ -32,9 +33,12 @@ function PostsListPage() {
             <Link to="/create"><button>Start now!</button></Link>
           </div>
         </div>
-        <div>
-          <span>We partner with</span><span>forward-thinking</span><span> startups.</span>
+        <div className="header-partners py-3  my-5">
+          <span>We partner with</span><span>&nbsp; forward-thinking&nbsp; </span><span>startups.</span>
           
+        </div>
+        <div className="partners-logos d-flex justify-center">
+          <div className="d-flex align-items-center"><img src="./icon.png"></img><span className="px-2">SECOND HAND</span></div>
         </div>
         <div className="second-landing-section">
           <div  className="text-start landing-main-text">
@@ -60,28 +64,31 @@ function PostsListPage() {
                 {cards}
           </div>
         </div>
-        <div>
-          <div className="">
-          Improve your brand with an awesome site.
+        <div className="d-flex my-5">
+          <div className="section-text-block">
+            <div className="section-header-promo">
+              <span className="bold">Improve </span>your brand <span>with an awesome site.</span>
+            </div>
+            <div className="promo-text py-4"> 
+                <span className="">Comprehensive </span>
+                <span className="">Brand</span>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.</p>
+            </div>
+            <div className="promo-text py-4">  
+              <span className="">WEB </span>
+              <span className="">PRESENCE</span>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.</p>
+            </div>
           </div>
-          <div> 
-             <span className=" d-flex bold-header-text px-4 ">Comprehensive </span>
-              <span className="d-flex regular-header-text">Brand</span>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.</p>
-              </div>
-              <div>  <span className=" d-flex bold-header-text px-4 ">WEB </span>
-              <span className="d-flex regular-header-text">PRESENCE</span>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.</p>
-              </div>
-              <div> </div>
-        </div>
+          <div className="promo-block-image"> </div>
+          </div>
         <div>
           <div className="d-flex align-items-center py-6">
               <span className=" d-flex bold-header-text px-4 ">WHAT</span>
               <span className="d-flex regular-header-text">THEY</span>
               <span className=" d-flex bold-header-text px-4 ">THINK</span>
           </div>
-
+   
         </div>
       <div className="talk-pannel d-flex mb-6 align-items-center">
         <div>

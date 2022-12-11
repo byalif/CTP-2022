@@ -2065,6 +2065,26 @@ footer a:hover {
 
 }
 
+.header-partners {
+  font-family: 'Roboto';
+  font-size: 27px;
+  text-transform: uppercase;
+}
+.header-partners span:nth-child(even){
+  font-size: 22px;
+}
+
+.partners-logos img{
+width: 80px;
+height: 80px;
+}
+.partners-logos span{
+text-transform: uppercase;
+font-size: 20px;
+font-weight: bold;
+font-style: italic;
+}
+
 .landing-main-image {
   min-height: 550px;
   width: 55%;
@@ -2102,6 +2122,43 @@ h1 {
   line-height: 55px;
 }
 
+
+.section-header-promo {
+  font-size: 48px;
+  text-transform: uppercase;
+  line-height: 53px;
+}
+
+
+.section-header-promo span {
+  font-weight: bold;
+}
+
+.section-text-block  {
+  padding: 100px;
+  text-align: left;
+  width: 50%;
+}
+
+.promo-block-image {
+  width: 50%;
+  height: 600px;
+  background: url("Group\ 827.png") no-repeat center center/contain;
+}
+
+.promo-text span {
+  text-transform: uppercase;
+  font-size: 22px;
+}
+.promo-text span:nth-child(odd){
+  font-weight: bold;
+}
+.promo-text p {
+  font-weight: 400;
+  font-size: 16px;
+  color: #747474;
+  padding-top: 10px;
+}
 
 /* MICRO POST */
 

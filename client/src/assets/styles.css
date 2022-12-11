@@ -2162,7 +2162,7 @@ h1 {
 #register {
   margin: 50px 0 100px;
 }
-#register input{
+#register input, .login-form input{
   max-width: 100%;
   border-radius: 40px;
   border: 1px solid #858585;
@@ -2176,8 +2176,9 @@ h1 {
 
 }
 
-#register input[type="submit"]{
+#register input[type="submit"], .login-form button{
   background: #603F8B;
+  border: 1px solid #603F8B;
   box-shadow: 0px 4px 10px rgba(2, 87, 251, 0.2);
   border-radius: 44px;
   color: white;
@@ -2195,8 +2196,9 @@ h1 {
   transition: .3s ease-in-out;
 }
 
-#register input[type="submit"]:hover {
+#register input[type="submit"]:hover, .login-form button:hover {
   background:#FD49A0;
+  border: 1px solid #FD49A0;
   color: white;
   box-shadow: 0px 4px 10px rgba(2, 87, 251, 0.3);
   

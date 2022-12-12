@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   MDBContainer,
   MDBCol,
@@ -12,6 +13,7 @@ import axios from "axios";
 import Layout from "../components/layout";
 
 function Login() {
+  const navigate = useNavigate();
   const [input, setInput] = useState({
     email: "",
     password: "",
@@ -29,7 +31,12 @@ function Login() {
         password: input.password,
       })
       .then((x) => {
-        localStorage.setItem("email", x.email);
+        console.log(x);
+        localStorage.setItem("email", x.data.email);
+        localStorage.setItem("id", x.data.userId);
+        setTimeout(() => {
+          navigate("/feed");
+        }, 200);
       })
       .catch((err) => {
         alert("wrong password");
@@ -57,13 +64,11 @@ function Login() {
 
           <MDBCol col="12" md="12" className="flex-wrap d-flex">
             <MDBInput
-             
               label="Email address"
               name="email"
               onChange={changeTXT}
               value={input.email}
               wrapperClass="mb-4 col-12 d-flex flex-column-reverse flex-column text-start"
-              
               id="formControlLg"
               type="email"
               size="lg"
@@ -86,17 +91,21 @@ function Login() {
                 id="flexCheckDefault"
                 label="Remember me "
               />
-              <a href="!#" className="mx-3"> Forgot password?</a>
+              <a href="!#" className="mx-3">
+                {" "}
+                Forgot password?
+              </a>
             </div>
 
             <MDBBtn onClick={logInUser} className="mb-4 w-100" size="lg">
               Sign in
             </MDBBtn>
-{/* 
+
+            {/* 
             <div className="divider d-flex align-items-center my-4">
               <p className="text-center fw-bold mx-3 mb-0">OR</p>
             </div> */}
-{/* 
+            {/* 
             <MDBBtn
               className="mb-4 w-100"
               size="lg"

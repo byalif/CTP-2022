@@ -10,8 +10,11 @@ import {
   MDBInput,
   MDBCheckbox,
 } from "mdb-react-ui-kit";
+import { useNavigate } from "react-router-dom";
 
 const CreatePost = () => {
+  const nav = useNavigate();
+
   const [file, setFile] = useState("No files added");
   const [data, setData] = useState(new FormData());
   useEffect(() => {
@@ -43,32 +46,44 @@ const CreatePost = () => {
   };
 
   const postImage = () => {
-    if (data.get("file") && localStorage.getItem("id")) {
-      fetch(``, {
-        method: "POST",
-        body: data,
-      })
-        .then((res) => {
-          return res.json();
+    if (localStorage.getItem("id")) {
+      if (
+        data.get("file") &&
+        postBody.title.trim() != "" &&
+        postBody.description.trim() != "" &&
+        postBody.location.trim() != ""
+      ) {
+        fetch(`https://api.cloudinary.com/v1_1/dcchunhwy/image/upload`, {
+          method: "POST",
+          body: data,
         })
-        .then((theIMG) => {
-          if (theIMG.public_id != "") {
-            console.log(theIMG);
-            axios
-              .post(``, {
-                ...postBody,
-                img: theIMG.public_id,
-                id: localStorage.getItem("id"),
-                surname: localStorage.getItem("nickname"),
-              })
-              .then((res) => {
-                console.log(res);
-              })
-              .catch((err) => {
-                console.log(err);
-              });
-          }
-        });
+          .then((res) => {
+            return res.json();
+          })
+          .then((theIMG) => {
+            if (theIMG.public_id != "") {
+              console.log(theIMG);
+              axios
+                .post(`https://ctp-project.herokuapp.com/api/posts/upload`, {
+                  ...postBody,
+                  img: theIMG.public_id,
+                  id: localStorage.getItem("id"),
+                  surname: localStorage.getItem("nickname"),
+                })
+                .then((res) => {
+                  nav("/feed");
+                  console.log(res);
+                })
+                .catch((err) => {
+                  console.log(err);
+                });
+            }
+          });
+      } else {
+        alert("Cannot leave empty fields!");
+      }
+    } else {
+      nav("/login");
     }
   };
 

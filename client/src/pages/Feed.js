@@ -18,7 +18,7 @@ function Feed(props) {
     axios
       .get("https://ctp-project.herokuapp.com/api/posts/getAll")
       .then((x) => {
-        setData(x.data);
+        setData(x.data.reverse());
         console.log(x);
       })
       .catch((err) => {

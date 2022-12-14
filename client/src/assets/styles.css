@@ -605,6 +605,27 @@ select {
   margin-top: 1.2em;
   margin-bottom: 1.2em;
 }
+
+.titleCom{
+  margin-bottom: 10px;
+  font-size: 20px;
+  letter-spacing: 1px;
+  font-weight: 200;
+  color:"#787878"
+}
+
+/* ::-webkit-scrollbar {
+    overflow-y: hidden;
+} */
+
+.commentBox{
+  
+  display: scroll;
+  overflow: scroll;
+  /* background-color: blue; */
+  height: 170px;
+  margin-bottom: -40px;
+}
 .prose :where(a):not(:where([class~="not-prose"] *)) {
   color: currentColor;
   text-decoration: underline;

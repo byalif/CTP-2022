@@ -6,6 +6,11 @@ import logo from "../assets/logo_min.png";
 import postpicture from "../assets/default-post-img1.jpg";
 import { AdvancedImage } from "@cloudinary/react";
 import { Cloudinary } from "@cloudinary/url-gen";
+const cld = new Cloudinary({
+  cloud: {
+    cloudName: "dcchunhwy",
+  },
+});
 
 export default function MicroPost(props) {
   return (
@@ -13,25 +18,21 @@ export default function MicroPost(props) {
       <div className="d-flex justify-between py-1">
         <div className="d-flex">
           <div className="micro-post-avatar">
-          <img
-        src={props.avatar}
-        
-        onError={(e) =>
-          (e.target.onerror = null)(
-            (e.target.src =
-              "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Stadtbild_M%C3%BCnchen.jpg/2560px-Stadtbild_M%C3%BCnchen.jpg")
-          )
-        }
-      />
+            <img
+              src={props.avatar}
+              onError={(e) =>
+                (e.target.onerror = null)(
+                  (e.target.src =
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Stadtbild_M%C3%BCnchen.jpg/2560px-Stadtbild_M%C3%BCnchen.jpg")
+                )
+              }
+            />
           </div>
 
           <div className="px-3">
             <div>
               <b>{props.name}</b> by{" "}
-              <span
-                onClick={() => {}}
-                style={{ cursor: "pointer", color: "#1a23c9" }}
-              >
+              <span style={{ cursor: "pointer", color: "#1a23c9" }}>
                 @{props.surname}
               </span>
             </div>
@@ -46,7 +47,14 @@ export default function MicroPost(props) {
       </div>
       <div className="card mb-4 shadow micro-post-image">
         <Link to={`/posts/${props.id}`}>
-          <AdvancedImage className="img" src={props.postImage} />
+          {props.postImage && props.postImage.substring(0, 4) == "http" ? (
+            <img src={props.postImage} alt="" />
+          ) : (
+            <AdvancedImage
+              className="img"
+              cldImg={cld.image(`${props.postImage}`)}
+            />
+          )}
         </Link>
 
         <div className="card-body card-text">{props.description}</div>

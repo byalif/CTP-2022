@@ -133,14 +133,14 @@ function PostsListPage() {
           </div>
           <div className="promo-block-image"> </div>
           </div>
-        <div>
+        {/* <div>
           <div className="d-flex align-items-center py-6">
               <span className=" d-flex bold-header-text px-4 ">WHAT</span>
               <span className="d-flex regular-header-text">THEY</span>
               <span className=" d-flex bold-header-text px-4 ">THINK</span>
           </div>
    
-        </div>
+        </div> */}
       <div className="talk-pannel d-flex mb-6 align-items-center">
         <div>
           <div>            

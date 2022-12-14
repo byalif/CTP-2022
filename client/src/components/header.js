@@ -12,7 +12,7 @@ export default function Header() {
   });
   return (
     <header className="navbar navbar-expand-sm navbar-dark">
-      <ul className="navbar-nav container-fluid row p-3 align-items-center">
+      <ul className="navbar-nav container-fluid p-3 align-items-center">
         <li className="nav-item col d-flex justify-content-start">
           <Link className="navbar-brand logo" to="/">
             iWardrobe

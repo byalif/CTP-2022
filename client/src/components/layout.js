@@ -6,8 +6,8 @@ import { BackgroundGradient } from './background-gradient'
 
 export default function Layout({ children }) {
     return(
-        <div className="relative mx-auto my-0 flex min-h-screen flex-col overflow-hidden bg-white">
-            <BackgroundGradient className="absolute top-0 bottom-0 left-1/2 hidden w-1/2 lg:block" />
+        <div className="relative mx-auto my-0 flex min-h-screen flex-col overflow-hidden bg-white p-0">
+            {/* <BackgroundGradient className="absolute top-0 bottom-0 left-1/2 hidden w-1/2 lg:block" /> */}
     
             <Header />
             <main className="">

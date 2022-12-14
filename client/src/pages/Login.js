@@ -97,7 +97,7 @@ function Login() {
               </a>
             </div>
 
-            <MDBBtn onClick={logInUser} className="mb-4 w-100" size="lg">
+            <MDBBtn onClick={logInUser} className="mb-4 w-100" >
               Sign in
             </MDBBtn>
 

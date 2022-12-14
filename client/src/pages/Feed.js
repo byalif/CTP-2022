@@ -26,7 +26,7 @@ function Feed(props) {
       });
   }, []);
   const cards = data.map((item) => {
-    let img = cld.image(`${item.img}`);
+    // let img = cld.image(`${item.img}`);
     return (
       <MicroPost
         id={item.id}
@@ -35,7 +35,7 @@ function Feed(props) {
         location={item.location}
         date={item.createdAt}
         description={item.description}
-        postImage={img}
+        postImage={item.img}
       />
     );
   });

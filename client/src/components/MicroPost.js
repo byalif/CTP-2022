@@ -13,10 +13,16 @@ export default function MicroPost(props) {
       <div className="d-flex justify-between py-1">
         <div className="d-flex">
           <div className="micro-post-avatar">
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/340px-Default_pfp.svg.png?20220226140232"
-              alt="post image"
-            />
+          <img
+        src={props.avatar}
+        
+        onError={(e) =>
+          (e.target.onerror = null)(
+            (e.target.src =
+              "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Stadtbild_M%C3%BCnchen.jpg/2560px-Stadtbild_M%C3%BCnchen.jpg")
+          )
+        }
+      />
           </div>
 
           <div className="px-3">
@@ -40,7 +46,7 @@ export default function MicroPost(props) {
       </div>
       <div className="card mb-4 shadow micro-post-image">
         <Link to={`/posts/${props.id}`}>
-          <AdvancedImage className="img" cldImg={props.postImage} />
+          <AdvancedImage className="img" src={props.postImage} />
         </Link>
 
         <div className="card-body card-text">{props.description}</div>

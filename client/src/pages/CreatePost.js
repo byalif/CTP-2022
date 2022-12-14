@@ -44,7 +44,7 @@ const CreatePost = () => {
 
   const postImage = () => {
     if (data.get("file") && localStorage.getItem("id")) {
-      fetch(`https://api.cloudinary.com/v1_1/dcchunhwy/image/upload`, {
+      fetch(``, {
         method: "POST",
         body: data,
       })
@@ -55,7 +55,7 @@ const CreatePost = () => {
           if (theIMG.public_id != "") {
             console.log(theIMG);
             axios
-              .post(`https://ctp-project.herokuapp.com/api/posts/upload`, {
+              .post(``, {
                 ...postBody,
                 img: theIMG.public_id,
                 id: localStorage.getItem("id"),

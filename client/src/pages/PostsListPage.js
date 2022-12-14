@@ -7,6 +7,13 @@ import MicroPost from "../components/MicroPost";
 import { Link} from "react-router-dom";
 import data from "../data"
 //import {DemoCarousel} from "../components/DemoCarousel";
+import { AdvancedImage } from "@cloudinary/react";
+import { Cloudinary } from "@cloudinary/url-gen";
+const cld = new Cloudinary({
+  cloud: {
+    cloudName: "dcchunhwy",
+  },
+});
 
 function PostsListPage() {
   const cards = data.slice(0, 4).map(item =>{
@@ -66,7 +73,46 @@ function PostsListPage() {
               <span className="d-flex regular-header-text">FEEDPAGE</span>
           </div>
           <div className="d-flex align-items-center px-6 justify-center flex-wrap py-6">
-                {cards}
+                <MicroPost
+                name="Jessica"
+                location="Brooklyn, NY"
+                date="12/12/2022"
+                surname="Jess_NY "
+                // startDate= {item.startDate}
+                avatar="./default_avatar.jpg"
+                description="GiveaWOW! Nice blouse. &#128512;"
+                postImage="https://images.unsplash.com/photo-1587754551134-74d789c4f22e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1035&q=80"
+            />
+                            <MicroPost
+                name="James Bond"
+                location="London, UK"
+                date="12/12/2022"
+                surname="007 "
+                // startDate= {item.startDate}
+                avatar="./Alif.png"
+                description="How do you like my outfit? ;)"
+                postImage="https://images.unsplash.com/photo-1434510423563-c7e99bbc5bbd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
+            />
+                <MicroPost
+                name="Maria M"
+                location="Queens, NY"
+                date="12/12/2022"
+                surname="MMaria"
+                // startDate= {item.startDate}
+                avatar="./default_avatar.jpg"
+                description="How do you like my outfit? ;)"
+                postImage="https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1035&q=80"
+            />
+                <MicroPost
+                name="Kristina Korzhenevskaya"
+                location="Brooklyn, NY"
+                date="12/12/2022"
+                surname="Korzhenevskaya "
+                // startDate= {item.startDate}
+                avatar="./Kristina.png"
+                description="OMG! THIS BAG! SO BEAUTIFUL &#128525; &#128525; &#128525;"
+                postImage="https://images.unsplash.com/photo-1591567462127-1f25099900ab?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1133&q=80"
+            />
           </div>
         </div>
         <div className="d-flex my-5">

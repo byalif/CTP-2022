@@ -29,24 +29,23 @@ const CreateAccount = () => {
       return;
     }
 
-    try {
-      const login = await axios.post(
-        "https://ctp-project.herokuapp.com/api/users/create",
-        {
-          email: input.email,
-          password: input.password,
-          firstName: input.firstName,
-          lastName: input.lastName,
-          phone: input.phone,
-          nickName: input.nickName,
-        }
-      );
-      localStorage.setItem("id", login.data.userId);
-      localStorage.setItem("nickname", login.data.nickName);
-      nav("/");
-    } catch (error) {
-      console.log(error);
-    }
+    axios
+      .post("https://ctp-project.herokuapp.com/api/users/create", {
+        email: input.email,
+        password: input.password,
+        firstName: input.firstName,
+        lastName: input.lastName,
+        phone: input.phone,
+        nickName: input.nickName,
+      })
+      .then((x) => {
+        localStorage.setItem("id", x.data.userId);
+        localStorage.setItem("nickname", x.data.nickName);
+        nav("/");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
   const onChangeHandler = (e) => {
     e.preventDefault();

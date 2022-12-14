@@ -30,13 +30,13 @@ function App() {
               <Route path="/about-us" element={<AboutUsPage />} />
               <Route path="/" element={<Routing />} />
 
-              <Route path="/404" element={<Error />} />
               <Route path="/login" element={<Login />} />
               <Route path="/user/:id" element={<Account />} />
               <Route path="/create" element={<CreateAccount />} />
               <Route path="/new-post" element={<CreatePost />} />
               <Route path="/edit/:id" element={<Edit />} />
               <Route path="/feed" element={<Feed />} />
+              <Route path="*" element={<Error />} />
             </Routes>
           </div>
         </div>

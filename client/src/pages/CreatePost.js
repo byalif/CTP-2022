@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../components/layout";
 import axios from "axios";
+import Navbar from "../components/Navbar.js";
 import {
   MDBContainer,
   MDBCol,
@@ -88,124 +89,137 @@ const CreatePost = () => {
   };
 
   return (
-    <Layout>
-      <div
-        style={{ display: "Flex", padding: "25px" }}
-        className="create-post-block"
-      >
-        <div
-          style={{
-            marginTop: "80px",
-            padding: "30px",
-            width: "50%",
-          }}
-        >
-          <div class="upload-files-container">
-            <div class="drag-file-area">
-              <label class="label">
-                <span class="browse-files">
-                  {" "}
-                  <input
-                    onChange={(e) => {
-                      uploadImage(e.target.files);
-                    }}
-                    type="file"
-                    class="default-file-input"
-                  />{" "}
-                  <span
-                    style={{
-                      cursor: "pointer",
-                      backgroundColor: "#e6e6e6",
-                      padding: "30px",
-                      paddingBottom: "40px",
-                      borderRadius: "50px",
-                      letterSpacing: "1px",
-                      fontWeight: "300",
-                      fontSize: "30px",
-                    }}
-                    class="browse-files-text"
-                  >
-                    Upload file
+    <>
+      <Navbar></Navbar>
+      <Layout>
+        <div style={{ display: "Flex" }} className="create-post-block">
+          <div
+            style={{
+              height: "200px",
+              marginTop: "80px",
+              padding: "30px",
+              width: "50%",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              margin: "10px",
+            }}
+          >
+            <div
+              style={{
+                padding: "10px",
+                width: "100%",
+                borderRadius: "80px",
+                backgroundColor: "#e6e6e6",
+                maxWidth: "300px",
+              }}
+            >
+              <div class="drag-file-area">
+                <label class="label">
+                  <span class="browse-files">
+                    {" "}
+                    <input
+                      onChange={(e) => {
+                        uploadImage(e.target.files);
+                      }}
+                      type="file"
+                      class="default-file-input"
+                    />{" "}
+                    <span
+                      style={{
+                        cursor: "pointer",
+                        padding: "30px",
+                        paddingBottom: "40px",
+                        letterSpacing: "1px",
+                        fontWeight: "300",
+                        fontSize: "30px",
+                      }}
+                      class="browse-files-text"
+                    >
+                      Upload file
+                    </span>{" "}
                   </span>{" "}
-                </span>{" "}
-              </label>
+                </label>
+              </div>
+            </div>
+            <div
+              style={{
+                fontWeight: "300",
+                fontSize: "19px",
+              }}
+            >
+              {file}
             </div>
           </div>
-          <div
-            style={{
-              fontWeight: "300",
-            }}
-          >
-            {file}
-          </div>
-        </div>
 
-        <div style={{ width: "50%" }} className="form-post-info">
-          <div
-            style={{ display: "Flex", flexDirection: "column" }}
-            className="mb-4"
-          >
-            {" "}
-            <label htmlFor="" className="mb-1">
-              Title
-            </label>
-            <input
-              onChange={changeIt}
-              value={postBody.title}
-              name="title"
-              type="text"
-            />
-          </div>
-          <div
-            style={{ display: "Flex", flexDirection: "column" }}
-            className="mb-4"
-          >
-            {" "}
-            <label htmlFor="" className="mb-1">
-              Description
-            </label>
-            <textArea
-              onChange={changeIt}
-              type="text"
-              value={postBody.description}
-              name="description"
-            />
-          </div>
-          <div
-            style={{ display: "Flex", flexDirection: "column" }}
-            className="mb-4"
-          >
-            <label htmlFor="" className="mb-1">
-              Location
-            </label>
-            <input
-              value={postBody.location}
-              name="location"
-              onChange={changeIt}
-              type="text"
-            />
-          </div>
-          <div
-            style={{ display: "Flex", flexDirection: "column" }}
-            className="mb-4"
-          >
-            <label htmlFor="" className="mb-1">
-              HashTags
-            </label>
-            <input onChange={changeIt} type="text" />
-          </div>
-          <div
-            style={{
-              marginTop: "10px",
-              display: "Flex",
-              flexDirection: "column",
-            }}
-          >
-            <input type="submit" onClick={postImage} />
+          <div style={{ width: "50%" }} className="form-post-info">
+            <div
+              style={{ display: "Flex", flexDirection: "column" }}
+              className="mb-4"
+            >
+              {" "}
+              <label htmlFor="" className="mb-1">
+                Title
+              </label>
+              <input
+                onChange={changeIt}
+                value={postBody.title}
+                name="title"
+                type="text"
+              />
+            </div>
+            <div
+              style={{ display: "Flex", flexDirection: "column" }}
+              className="mb-4"
+            >
+              {" "}
+              <label htmlFor="" className="mb-1">
+                Description
+              </label>
+              <textArea
+                onChange={changeIt}
+                type="text"
+                value={postBody.description}
+                name="description"
+              />
+            </div>
+            <div
+              style={{ display: "Flex", flexDirection: "column" }}
+              className="mb-4"
+            >
+              <label htmlFor="" className="mb-1">
+                Location
+              </label>
+              <input
+                value={postBody.location}
+                name="location"
+                onChange={changeIt}
+                type="text"
+              />
+            </div>
+            <div
+              style={{ display: "Flex", flexDirection: "column" }}
+              className="mb-4"
+            >
+              <label htmlFor="" className="mb-1">
+                HashTags
+              </label>
+              <input onChange={changeIt} type="text" />
+            </div>
+            <div
+              style={{
+                marginTop: "10px",
+                display: "Flex",
+                flexDirection: "column",
+              }}
+            >
+              <input type="submit" onClick={postImage} />
+            </div>
           </div>
         </div>
-      </div>
-    </Layout>
+      </Layout>
+    </>
   );
 };
 

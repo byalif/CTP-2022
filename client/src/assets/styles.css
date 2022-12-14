@@ -2187,7 +2187,7 @@ h1 {
 }
 
 .micro-post-image img{
-  height: 500px;
+  
   object-position: center center;
   object-fit: cover;
   width: 100%;

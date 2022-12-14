@@ -95,8 +95,8 @@ function ShowPostPage(props) {
             </div>
           </div>
         </div>
-        <div className="card mb-4 shadow micro-post-image py-4">
-          <AdvancedImage className="img" cldImg={cld.image(`${post.img}`)} />
+        <div className="card mb-4 shadow micro-post-image">
+          <AdvancedImage className="img" src={post.img}  />
           <div className="card-body card-text">{post.description}</div>
           <div className="card-body">
             <div className="micro-post-location">{post.location}</div>

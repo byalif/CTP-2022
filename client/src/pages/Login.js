@@ -32,7 +32,7 @@ function Login() {
       })
       .then((x) => {
         console.log(x);
-        localStorage.setItem("email", x.data.email);
+        localStorage.setItem("nickname", x.data.nickName);
         localStorage.setItem("id", x.data.userId);
         setTimeout(() => {
           navigate("/feed");

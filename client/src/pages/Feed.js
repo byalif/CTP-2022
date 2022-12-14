@@ -1,22 +1,40 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Img from "../Img";
 import Layout from "../components/layout";
 import MicroPost from "../components/MicroPost";
+import { AdvancedImage } from "@cloudinary/react";
+import { Cloudinary } from "@cloudinary/url-gen";
+import axios from "axios";
 
-import data from "../data";
+const cld = new Cloudinary({
+  cloud: {
+    cloudName: "dcchunhwy",
+  },
+});
 
 function Feed(props) {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    axios
+      .get("https://ctp-project.herokuapp.com/api/posts/getAll")
+      .then((x) => {
+        setData(x.data);
+        console.log(x);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
   const cards = data.map((item) => {
+    let img = cld.image(`${item.img}`);
     return (
       <MicroPost
-        name={item.name}
-        location={item.location}
-        date={item.date}
+        name={item.title}
         surname={item.surname}
-        // startDate= {item.startDate}
-        avatar={item.avatar}
+        location={item.location}
+        date={item.createdAt}
         description={item.description}
-        postImage={item.postImage}
+        postImage={img}
       />
     );
   });

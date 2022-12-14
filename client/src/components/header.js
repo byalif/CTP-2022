@@ -6,8 +6,8 @@ import data from "../data";
 export default function Header() {
   const [username, setUsername] = useState("");
   useEffect(() => {
-    if (localStorage.getItem("email")) {
-      setUsername(localStorage.getItem("email"));
+    if (localStorage.getItem("nickname")) {
+      setUsername(localStorage.getItem("nickname"));
     }
   });
   return (

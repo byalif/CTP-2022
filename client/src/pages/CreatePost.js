@@ -63,7 +63,7 @@ const CreatePost = () => {
 
   return (
     <Layout>
-      <div style={{ display: "Flex", padding: "25px" }}>
+      <div style={{ display: "Flex", padding: "25px" }} className="create-post-block">
         <div
           style={{
             marginTop: "80px",
@@ -102,15 +102,15 @@ const CreatePost = () => {
             </div>
           </div>
         </div>
-        <div style={{ width: "35%" }}>
-          <div style={{ display: "Flex", flexDirection: "column" }}>
+        <div style={{ width: "50%" }} className="form-post-info">
+          <div style={{ display: "Flex", flexDirection: "column" }} className="mb-4">
             {" "}
-            <label htmlFor="">Title</label>
-            <input onChange={changeIt} value={postBody.title} name="title" />
+            <label htmlFor="" className="mb-1">Title</label>
+            <input onChange={changeIt} value={postBody.title} name="title" type="text"/>
           </div>
-          <div style={{ display: "Flex", flexDirection: "column" }}>
+          <div style={{ display: "Flex", flexDirection: "column" }} className="mb-4">
             {" "}
-            <label htmlFor="">Description</label>
+            <label htmlFor="" className="mb-1">Description</label>
             <textArea
               onChange={changeIt}
               type="text"
@@ -118,8 +118,8 @@ const CreatePost = () => {
               name="description"
             />
           </div>
-          <div style={{ display: "Flex", flexDirection: "column" }}>
-            <label htmlFor="">Location</label>
+          <div style={{ display: "Flex", flexDirection: "column" }}  className="mb-4">
+            <label htmlFor="" className="mb-1">Location</label>
             <input
               value={postBody.location}
               name="location"
@@ -127,8 +127,8 @@ const CreatePost = () => {
               type="text"
             />
           </div>
-          <div style={{ display: "Flex", flexDirection: "column" }}>
-            <label htmlFor="">HashTags</label>
+          <div style={{ display: "Flex", flexDirection: "column" }}  className="mb-4">
+            <label htmlFor="" className="mb-1">HashTags</label>
             <input onChange={changeIt} type="text" />
           </div>
           <div
@@ -138,7 +138,8 @@ const CreatePost = () => {
               flexDirection: "column",
             }}
           >
-            <button onClick={postImage}>Upload</button>
+            <input type="submit" onClick={postImage}/>
+       
           </div>
         </div>
       </div>

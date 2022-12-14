@@ -29,7 +29,7 @@ export default function MicroPost(props) {
             </a> 
        </div>
       <div className="card mb-4 shadow micro-post-image">
-        <img src={props.postImage} alt="post image"/>
+        <Link to="/posts/1"><img src={props.postImage} alt="post image"/></Link>
         
         <div className="card-body card-text">
 

@@ -219,19 +219,21 @@ function ShowPostPage(props) {
                 className="card-body card-text"
               >
                 <div>{post.description}</div>
-                <div
-                  onClick={deletePost}
-                  style={{
-                    cursor: "pointer",
-                    backgroundColor: "#315478",
-                    borderRadius: "20px",
-                    padding: "3px 10px 3px 10px",
-                    color: "white",
-                    fontWeight: "300",
-                  }}
-                >
-                  Delete
-                </div>
+                {localStorage.getItem("id") == post.UserId && (
+                  <div
+                    onClick={deletePost}
+                    style={{
+                      cursor: "pointer",
+                      backgroundColor: "#315478",
+                      borderRadius: "20px",
+                      padding: "3px 10px 3px 10px",
+                      color: "white",
+                      fontWeight: "300",
+                    }}
+                  >
+                    Delete
+                  </div>
+                )}
               </div>
               <div className="card-body">
                 <div className="micro-post-location">{post.location}</div>

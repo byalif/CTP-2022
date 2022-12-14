@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { Avatar } from "./Avatar";
-
+import axios from "axios";
 import logo from "../assets/logo_min.png";
 import postpicture from "../assets/default-post-img1.jpg";
 import { AdvancedImage } from "@cloudinary/react";
@@ -27,6 +27,17 @@ export default function MicroPost(props) {
     "#73c26e",
     "#419154",
   ];
+
+  const deletePost = () => {
+    axios
+      .post(`https://ctp-project.herokuapp.com/api/posts/delete/${props.id}`)
+      .then((x) => {
+        window.location.reload();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <div className="col-114 text-start px-6 mb-6">
       <div className="d-flex justify-between py-1">
@@ -77,7 +88,25 @@ export default function MicroPost(props) {
           )}
         </Link>
 
-        <div className="card-body card-text">{props.description}</div>
+        <div
+          style={{ display: "flex", justifyContent: "space-between" }}
+          className="card-body card-text"
+        >
+          <div>{props.description}</div>
+          <div
+            onClick={deletePost}
+            style={{
+              cursor: "pointer",
+              backgroundColor: "#315478",
+              borderRadius: "20px",
+              padding: "3px 10px 3px 10px",
+              color: "white",
+              fontWeight: "300",
+            }}
+          >
+            Delete
+          </div>
+        </div>
         <div className="card-body">
           <div className="micro-post-location">{props.location}</div>
           <div className="hash-tags-block">

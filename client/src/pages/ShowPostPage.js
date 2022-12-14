@@ -118,6 +118,18 @@ function ShowPostPage(props) {
       window.location("/");
     }
   };
+
+  const deletePost = () => {
+    axios
+      .post(`https://ctp-project.herokuapp.com/api/posts/delete/${post.id}`)
+      .then((x) => {
+        nav("/");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   const getPost = () => {
     axios
       .get(`https://ctp-project.herokuapp.com/api/posts/getPost/${id}`)
@@ -202,7 +214,25 @@ function ShowPostPage(props) {
                 />
               )}
 
-              <div className="card-body card-text">{post.description}</div>
+              <div
+                style={{ display: "flex", justifyContent: "space-between" }}
+                className="card-body card-text"
+              >
+                <div>{post.description}</div>
+                <div
+                  onClick={deletePost}
+                  style={{
+                    cursor: "pointer",
+                    backgroundColor: "#315478",
+                    borderRadius: "20px",
+                    padding: "3px 10px 3px 10px",
+                    color: "white",
+                    fontWeight: "300",
+                  }}
+                >
+                  Delete
+                </div>
+              </div>
               <div className="card-body">
                 <div className="micro-post-location">{post.location}</div>
                 <div

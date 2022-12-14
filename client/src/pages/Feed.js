@@ -32,6 +32,8 @@ function Feed(props) {
     // let img = cld.image(`${item.img}`);
     return (
       <MicroPost
+        data={data}
+        setData={setData}
         userId={item.UserId}
         id={item.id}
         name={item.title}

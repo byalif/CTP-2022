@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Avatar } from "./Avatar";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import data from "../data";
 
 export default function Header() {
   const [username, setUsername] = useState("");
+  const nav = useNavigate();
   useEffect(() => {
     if (localStorage.getItem("nickname")) {
       setUsername(localStorage.getItem("nickname"));
@@ -37,7 +38,7 @@ export default function Header() {
         </li>
         <li className="nav-item col d-flex justify-content-end">
           <NavLink className="nav-link" to="/">
-            {username ? `Hello, ${username}` : "Hello!"}
+            {username ? `Hello, ${username}` : ""}
           </NavLink>
         </li>
         <li className="nav-item col d-flex justify-content-end">
@@ -53,8 +54,8 @@ export default function Header() {
             onClick={() => {
               localStorage.removeItem("id");
               localStorage.removeItem("nickname");
+              window.location("/");
             }}
-            to="/"
             className="nav-link"
           >
             {username ? `Logout` : ""}

@@ -9,6 +9,7 @@ import Account from "./pages/Account";
 import CreateAccount from "./pages/CreateAccount";
 import Login from "./pages/Login";
 import Error from "./pages/Error";
+import Routing from "./components/Routing";
 import Edit from "./pages/Edit";
 import Feed from "./pages/Feed";
 import CreatePost from "./pages/CreatePost";
@@ -27,7 +28,7 @@ function App() {
               <Route path="/posts/new" element={<PostFormPage />} />
               <Route path="/posts/:id" element={<ShowPostPage />} />
               <Route path="/about-us" element={<AboutUsPage />} />
-              <Route path="/" element={<PostsListPage />} />
+              <Route path="/" element={<Routing />} />
 
               <Route path="/404" element={<Error />} />
               <Route path="/login" element={<Login />} />

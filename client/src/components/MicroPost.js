@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { Avatar } from "./Avatar";
 
 import logo from "../assets/logo_min.png";
@@ -39,7 +39,9 @@ export default function MicroPost(props) {
         </a>
       </div>
       <div className="card mb-4 shadow micro-post-image">
-        <AdvancedImage className="img" cldImg={props.postImage} />
+        <Link to={`/posts/${props.id}`}>
+          <AdvancedImage className="img" cldImg={props.postImage} />
+        </Link>
 
         <div className="card-body card-text">{props.description}</div>
         <div className="card-body">

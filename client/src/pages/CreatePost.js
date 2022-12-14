@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../components/layout";
 import axios from "axios";
 import {
@@ -12,7 +12,17 @@ import {
 } from "mdb-react-ui-kit";
 
 const CreatePost = () => {
+  const [file, setFile] = useState("No files added");
   const [data, setData] = useState(new FormData());
+  useEffect(() => {
+    if (data.get("file")) {
+      let vari = data.get("file").name;
+      if (vari.length >= 15) {
+        vari = data.get("file").name.substring(0, 12) + "...";
+      }
+      setFile(vari);
+    }
+  }, [data]);
   const [postBody, setBody] = useState({
     title: "",
     img: "",
@@ -49,6 +59,7 @@ const CreatePost = () => {
                 ...postBody,
                 img: theIMG.public_id,
                 id: localStorage.getItem("id"),
+                surname: localStorage.getItem("nickname"),
               })
               .then((res) => {
                 console.log(res);
@@ -63,7 +74,10 @@ const CreatePost = () => {
 
   return (
     <Layout>
-      <div style={{ display: "Flex", padding: "25px" }}>
+      <div
+        style={{ display: "Flex", padding: "25px" }}
+        className="create-post-block"
+      >
         <div
           style={{
             marginTop: "80px",
@@ -88,6 +102,7 @@ const CreatePost = () => {
                       cursor: "pointer",
                       backgroundColor: "#e6e6e6",
                       padding: "30px",
+                      paddingBottom: "40px",
                       borderRadius: "50px",
                       letterSpacing: "1px",
                       fontWeight: "300",
@@ -101,16 +116,39 @@ const CreatePost = () => {
               </label>
             </div>
           </div>
-        </div>
-        <div style={{ width: "35%" }}>
-          <div style={{ display: "Flex", flexDirection: "column" }}>
-            {" "}
-            <label htmlFor="">Title</label>
-            <input onChange={changeIt} value={postBody.title} name="title" />
+          <div
+            style={{
+              fontWeight: "300",
+            }}
+          >
+            {file}
           </div>
-          <div style={{ display: "Flex", flexDirection: "column" }}>
+        </div>
+
+        <div style={{ width: "50%" }} className="form-post-info">
+          <div
+            style={{ display: "Flex", flexDirection: "column" }}
+            className="mb-4"
+          >
             {" "}
-            <label htmlFor="">Description</label>
+            <label htmlFor="" className="mb-1">
+              Title
+            </label>
+            <input
+              onChange={changeIt}
+              value={postBody.title}
+              name="title"
+              type="text"
+            />
+          </div>
+          <div
+            style={{ display: "Flex", flexDirection: "column" }}
+            className="mb-4"
+          >
+            {" "}
+            <label htmlFor="" className="mb-1">
+              Description
+            </label>
             <textArea
               onChange={changeIt}
               type="text"
@@ -118,8 +156,13 @@ const CreatePost = () => {
               name="description"
             />
           </div>
-          <div style={{ display: "Flex", flexDirection: "column" }}>
-            <label htmlFor="">Location</label>
+          <div
+            style={{ display: "Flex", flexDirection: "column" }}
+            className="mb-4"
+          >
+            <label htmlFor="" className="mb-1">
+              Location
+            </label>
             <input
               value={postBody.location}
               name="location"
@@ -127,8 +170,13 @@ const CreatePost = () => {
               type="text"
             />
           </div>
-          <div style={{ display: "Flex", flexDirection: "column" }}>
-            <label htmlFor="">HashTags</label>
+          <div
+            style={{ display: "Flex", flexDirection: "column" }}
+            className="mb-4"
+          >
+            <label htmlFor="" className="mb-1">
+              HashTags
+            </label>
             <input onChange={changeIt} type="text" />
           </div>
           <div
@@ -138,7 +186,7 @@ const CreatePost = () => {
               flexDirection: "column",
             }}
           >
-            <button onClick={postImage}>Upload</button>
+            <input type="submit" onClick={postImage} />
           </div>
         </div>
       </div>

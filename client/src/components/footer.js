@@ -23,7 +23,7 @@ export default function Footer() {
           <h3>SiteMap</h3>
           <ul>
             <li><a href="">Home</a></li>
-            <li><a href="">Feed</a></li>
+            <li><a href="/feed">Feed</a></li>
             <li><a href="">Help</a></li>
           </ul>
         </div>

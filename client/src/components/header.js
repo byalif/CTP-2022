@@ -18,25 +18,46 @@ export default function Header() {
             iWardrobe
           </Link>
         </li>
+        {/* 
+        <li className="nav-item">
+          <NavLink className="nav-link" to="/posts/new">
+            Create a Micro Post
+          </NavLink>
+        </li>
+        <li className="nav-item">
+          <NavLink className="nav-link" to="/about-us">
+            About Us
+          </NavLink>
+        </li> */}
 
-        {/* <li className="nav-item">
-            <NavLink className="nav-link" to="/posts/new">
-              Create a Micro Post
-            </NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink className="nav-link" to="/about-us">
-              About Us
-            </NavLink>
-          </li> */}
         <li className="nav-item col">
           <NavLink className="nav-link logo" to="/">
             <Avatar avatar={data[0].avatar} />
           </NavLink>
         </li>
         <li className="nav-item col d-flex justify-content-end">
-          <NavLink className="nav-link" to="/login">
-            {username ? `hello, ${username}` : "Login"}
+          <NavLink className="nav-link" to="/">
+            {username ? `Hello, ${username}` : "Hello!"}
+          </NavLink>
+        </li>
+        <li className="nav-item col d-flex justify-content-end">
+          <NavLink
+            to={`${username ? "/new-post" : "/login"}`}
+            className="nav-link"
+          >
+            {username ? `Upload Post` : "Login"}
+          </NavLink>
+        </li>
+        <li className="nav-item col d-flex justify-content-end">
+          <NavLink
+            onClick={() => {
+              localStorage.removeItem("id");
+              localStorage.removeItem("nickname");
+            }}
+            to="/"
+            className="nav-link"
+          >
+            {username ? `Logout` : ""}
           </NavLink>
         </li>
       </ul>

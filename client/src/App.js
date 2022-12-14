@@ -23,7 +23,7 @@ function App() {
     <BrowserRouter>
       <ScrollToTop>
         <div className="text-center">
-          <div className="row justify-content-center">
+          <div className="">
             <Routes>
               <Route path="/posts/new" element={<PostFormPage />} />
               <Route path="/posts/:id" element={<ShowPostPage />} />

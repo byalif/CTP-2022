@@ -38,7 +38,12 @@ function PostsListPage() {
           
         </div>
         <div className="partners-logos d-flex justify-center">
+        <div className="d-flex align-items-center">
+            {/* <img src="./icon.png"></img> */}
+            <span className="px-2 font-normal">QCERA</span>
+            </div>
           <div className="d-flex align-items-center"><img src="./icon.png"></img><span className="px-2">SECOND HAND</span></div>
+
         </div>
         <div className="second-landing-section">
           <div  className="text-start landing-main-text">

@@ -4,7 +4,7 @@ import LoadingSpinner from "../components/LoadingSpinner";
 import ErrorAlert from "../components/ErrorAlert";
 import LikeButton from "../components/LikeButton";
 import { useParams, useNavigate } from "react-router-dom";
-
+import Navbar from "../components/Navbar.js";
 import logo from "../assets/logo_min.png";
 import axios from "axios";
 import Layout from "../components/layout";
@@ -17,14 +17,27 @@ const cld = new Cloudinary({
 });
 
 function ShowPostPage(props) {
+  const colors = [
+    "#73bbbf",
+    "#9baae0",
+    "#b3a6e3",
+    "#d197c5",
+    "#cc95a3",
+    "#95c9b9",
+    "#a8c999",
+    "#d1ca86",
+    "#c2a776",
+    "#73c26e",
+    "#419154",
+  ];
   const [post, setPost] = useState({});
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [likes, setLikes] = useState(10);
   const [comments, setComments] = useState([]);
   const [input, setInput] = useState("");
   const [isClicked, setIsClicked] = useState(false);
   const { id } = useParams();
+  const [loading, isLoading] = useState(true);
 
   const nav = useNavigate();
   useEffect(() => {
@@ -116,6 +129,7 @@ function ShowPostPage(props) {
           }
         });
         setPost(x.data);
+        isLoading(false);
         setLikes(x.data.Likes.length);
         setComments(x.data.Comments.reverse());
         console.log(x);
@@ -126,128 +140,157 @@ function ShowPostPage(props) {
   };
 
   return (
-    <Layout>
-      <div className="col-8 post-block text-start px-6">
-        <div className="d-flex justify-between py-1">
-          <div className="d-flex">
-            <div className="micro-post-avatar">
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/340px-Default_pfp.svg.png?20220226140232"
-                alt="post image"
-              />
-            </div>
-
-            <div className="px-3">
-              <div>
-                <b>{post.title}</b> by{" "}
-                <span
-                  onClick={() => {}}
-                  style={{ cursor: "pointer", color: "#1a23c9" }}
-                >
-                  @{post.surname}
-                </span>
-              </div>
-              <div className="micro-post-date">
-                {new Date(post.createdAt).toDateString()}
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="card mb-4 shadow micro-post-image py-4">
-          {post.img && post.img.substring(0, 4) == "http" ? (
-            <img src={post.img} alt="" />
-          ) : (
-            <AdvancedImage className="img" cldImg={cld.image(`${post.img}`)} />
-          )}
-
-          <div className="card-body card-text">{post.description}</div>
-          <div className="card-body">
-            <div className="micro-post-location">{post.location}</div>
-            <div
-              className={`like-button d-flex ${isClicked && "liked"}`}
-              onClick={handleClick}
-            >
-              <span className="">
-                <svg
-                  width="24"
-                  height="24"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                >
-                  <path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402m5.726-20.583c-2.203 0-4.446 1.042-5.726 3.238-1.285-2.206-3.522-3.248-5.719-3.248-3.183 0-6.281 2.187-6.281 6.191 0 4.661 5.571 9.429 12 15.809 6.43-6.38 12-11.148 12-15.809 0-4.011-3.095-6.181-6.274-6.181" />
-                </svg>
-              </span>
-              <span className="likes-counter px-2">{`${
-                likes != 1 ? "Likes" : "Like"
-              } | ${likes}`}</span>
-            </div>
-            <div className="hash-tags-block">
-              <a href="#">#jeans </a>
-              <a href="#">#iWardrobe </a>
-              <a href="#">#giveAway </a>
-            </div>
-          </div>
+    <>
+      <Navbar />
+      <Layout>
+        {loading ? (
           <div
-            style={{ marginBottom: "-35px" }}
-            className="card-footer small text-muted"
+            className="loading2"
+            style={{
+              textAlign: "left",
+              padding: "10px",
+              marginLeft: "10px",
+              height: "100vh",
+              fontSize: "16px",
+              fontWeight: "300",
+              letterSpacing: "1px",
+            }}
           >
-            <button>sell</button>
-            <button>exchange</button>
-            <button>giveaway</button>
+            Loading
           </div>
-          <div className="comments-update-block px-3 py-5">
-            <div className="d-flex">
-              <div className="">
-                <div>
-                  {props.name} {props.surname}
+        ) : (
+          <div className="post-block text-start px-6">
+            <div className="d-flex justify-between py-1">
+              <div className="d-flex">
+                <div
+                  onClick={() => {
+                    nav(`/user/${post.UserId}`);
+                  }}
+                  style={{ cursor: "pointer" }}
+                  className="micro-post-avatar"
+                >
+                  <p style={{ backgroundColor: `${colors[post.id % 11]}` }}>
+                    {post.surname.substring(0, 1).toUpperCase()}
+                  </p>
                 </div>
-                <div className="micro-post-date">{props.date}</div>
+                <div className="px-3">
+                  <div>
+                    <b>{post.title}</b> by{" "}
+                    <span
+                      onClick={() => {
+                        nav(`/user/${post.UserId}`);
+                      }}
+                      style={{ cursor: "pointer", color: "#1a23c9" }}
+                    >
+                      @{post.surname}
+                    </span>
+                  </div>
+                  <div className="micro-post-date">
+                    {new Date(post.createdAt).toDateString()}
+                  </div>
+                </div>
               </div>
             </div>
-            <div className="commentBox">
-              <div className="titleCom">Comments</div>
-              {Array.isArray(comments) &&
-                comments.map((x) => {
-                  return (
-                    <div style={{ display: "flex" }}>
-                      <span
-                        onClick={() => {
-                          window.location(`/user/${x.id}`);
-                        }}
-                        style={{ cursor: "pointer", color: "#1a23c9" }}
-                      >
-                        @{x.username}
-                      </span>
-                      <p style={{ marginLeft: "8px" }}>{x.comment}</p>
-                    </div>
-                  );
-                })}
-              {comments.length == 0 && (
-                <div style={{ fontWeight: "300" }}>No comments yet.</div>
+            <div className="card mb-4 shadow micro-post-image py-4">
+              {post.img && post.img.substring(0, 4) == "http" ? (
+                <img src={post.img} alt="" />
+              ) : (
+                <AdvancedImage
+                  className="img"
+                  cldImg={cld.image(`${post.img}`)}
+                />
               )}
+
+              <div className="card-body card-text">{post.description}</div>
+              <div className="card-body">
+                <div className="micro-post-location">{post.location}</div>
+                <div
+                  className={`like-button d-flex ${isClicked && "liked"}`}
+                  onClick={handleClick}
+                >
+                  <span className="">
+                    <svg
+                      width="24"
+                      height="24"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                    >
+                      <path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402m5.726-20.583c-2.203 0-4.446 1.042-5.726 3.238-1.285-2.206-3.522-3.248-5.719-3.248-3.183 0-6.281 2.187-6.281 6.191 0 4.661 5.571 9.429 12 15.809 6.43-6.38 12-11.148 12-15.809 0-4.011-3.095-6.181-6.274-6.181" />
+                    </svg>
+                  </span>
+                  <span className="likes-counter px-2">{`${
+                    likes != 1 ? "Likes" : "Like"
+                  } | ${likes}`}</span>
+                </div>
+                <div className="hash-tags-block">
+                  <a href="#">#jeans </a>
+                  <a href="#">#iWardrobe </a>
+                  <a href="#">#giveAway </a>
+                </div>
+              </div>
+              <div
+                style={{ marginBottom: "-35px" }}
+                className="card-footer small text-muted"
+              >
+                <button>sell</button>
+                <button>exchange</button>
+                <button>giveaway</button>
+              </div>
+              <div className="comments-update-block px-3 py-5">
+                <div className="d-flex">
+                  <div className="">
+                    <div>
+                      {props.name} {props.surname}
+                    </div>
+                    <div className="micro-post-date">{props.date}</div>
+                  </div>
+                </div>
+                <div className="commentBox">
+                  <div className="titleCom">Comments</div>
+                  {Array.isArray(comments) &&
+                    comments.map((x) => {
+                      return (
+                        <div style={{ display: "flex" }}>
+                          <span
+                            onClick={() => {
+                              window.location(`/user/${x.id}`);
+                            }}
+                            style={{ cursor: "pointer", color: "#1a23c9" }}
+                          >
+                            @{x.username}
+                          </span>
+                          <p style={{ marginLeft: "8px" }}>{x.comment}</p>
+                        </div>
+                      );
+                    })}
+                  {comments.length == 0 && (
+                    <div style={{ fontWeight: "300" }}>No comments yet.</div>
+                  )}
+                </div>
+              </div>
+              <div className="p-3 comment-block">
+                <label htmlFor="" className="d-flex comment-label py-2">
+                  Write a comment
+                </label>
+                <textArea
+                  rows="5"
+                  cols="23"
+                  onChange={changeCom}
+                  type="text"
+                  value={input}
+                  style={{ width: "100%" }}
+                  name="description"
+                />
+                <div>
+                  <button onClick={newComment}>Comment</button>
+                </div>
+              </div>
             </div>
           </div>
-          <div className="p-3 comment-block">
-            <label htmlFor="" className="d-flex comment-label py-2">
-              Write a comment
-            </label>
-            <textArea
-              rows="5"
-              cols="23"
-              onChange={changeCom}
-              type="text"
-              value={input}
-              className="col-8"
-              name="description"
-            />
-            <div>
-              <button onClick={newComment}>Comment</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </Layout>
+        )}
+      </Layout>
+    </>
   );
 }
 

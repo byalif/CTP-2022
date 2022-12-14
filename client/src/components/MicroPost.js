@@ -13,26 +13,45 @@ const cld = new Cloudinary({
 });
 
 export default function MicroPost(props) {
+  const nav = useNavigate();
+  const colors = [
+    "#73bbbf",
+    "#9baae0",
+    "#b3a6e3",
+    "#d197c5",
+    "#cc95a3",
+    "#95c9b9",
+    "#a8c999",
+    "#d1ca86",
+    "#c2a776",
+    "#73c26e",
+    "#419154",
+  ];
   return (
-    <div className="col-6 micro-post-block text-start px-6 mb-6">
+    <div className="col-114 text-start px-6 mb-6">
       <div className="d-flex justify-between py-1">
         <div className="d-flex">
-          <div className="micro-post-avatar">
-            <img
-              src={props.avatar}
-              onError={(e) =>
-                (e.target.onerror = null)(
-                  (e.target.src =
-                    "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Stadtbild_M%C3%BCnchen.jpg/2560px-Stadtbild_M%C3%BCnchen.jpg")
-                )
-              }
-            />
+          <div
+            style={{ cursor: "pointer" }}
+            onClick={() => {
+              nav(`/user/${props.userId}`);
+            }}
+            className="micro-post-avatar"
+          >
+            <p style={{ backgroundColor: `${colors[props.id % 11]}` }}>
+              {props.surname.substring(0, 1).toUpperCase()}
+            </p>
           </div>
 
           <div className="px-3">
             <div>
               <b>{props.name}</b> by{" "}
-              <span style={{ cursor: "pointer", color: "#1a23c9" }}>
+              <span
+                onClick={() => {
+                  nav(`/user/${props.userId}`);
+                }}
+                style={{ cursor: "pointer", color: "#1a23c9" }}
+              >
                 @{props.surname}
               </span>
             </div>

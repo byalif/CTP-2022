@@ -67,9 +67,10 @@ export default function MicroPost(props) {
       <div className="card mb-4 shadow micro-post-image">
         <Link to={`/posts/${props.id}`}>
           {props.postImage && props.postImage.substring(0, 4) == "http" ? (
-            <img src={props.postImage} alt="" />
+            <img style={{ maxHeight: "500px" }} src={props.postImage} alt="" />
           ) : (
             <AdvancedImage
+              style={{ maxHeight: "500px" }}
               className="img"
               cldImg={cld.image(`${props.postImage}`)}
             />

@@ -72,8 +72,11 @@ function ShowPostPage(props) {
     }
   };
 
-  const newComment = () => {
-    if (input.trim !== "" && localStorage.getItem("id") && id) {
+  const newComment = (e) => {
+    e.preventDefault();
+    if (!localStorage.getItem("id")) {
+      window.location("/login");
+    } else if (input.trim !== "" && localStorage.getItem("id") && id) {
       let tmp = comments;
       tmp.unshift({
         username: localStorage.getItem("nickname"),
